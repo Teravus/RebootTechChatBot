@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D175359F-C5FB-4455-B85F-12B9DEFBB682}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RebootTechBotLib</RootNamespace>
+    <AssemblyName>RebootTechBotLib</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HttpServer_OpenSim">
+      <HintPath>I:\VisualStudioProjects\Server\bin\HttpServer_OpenSim.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="obs-websocket-dotnet">
+      <HintPath>..\packages\OBS.Websocket.4.0\Any\obs-websocket-dotnet.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.2.3.0\lib\net46\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Extensions.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Extensions.Logging.2.0.2\lib\net461\Serilog.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.3\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.4.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="VaderSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CodingUpAStorm.VaderSharp.1.0.4\lib\net35\VaderSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>..\packages\OBS.Websocket.4.0\Any\websocket-sharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bot.cs" />
+    <Compile Include="BotOutput.cs" />
+    <Compile Include="Command\CommandProcessor.cs" />
+    <Compile Include="Command\Commands.cs" />
+    <Compile Include="Command\ICommands.cs" />
+    <Compile Include="Config\BotConfig.cs" />
+    <Compile Include="Data\DataAdapter.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="FollowEventArgs.cs" />
+    <Compile Include="Infrastructure\BaseHttpServer.cs" />
+    <Compile Include="Infrastructure\BaseRequestHandler.cs" />
+    <Compile Include="Infrastructure\ChatModuleManager.cs" />
+    <Compile Include="Infrastructure\CommandServer.cs" />
+    <Compile Include="Infrastructure\FileRequest.cs" />
+    <Compile Include="Infrastructure\IChatModule.cs" />
+    <Compile Include="Infrastructure\IRequestHandler.cs" />
+    <Compile Include="Infrastructure\MimeType.cs" />
+    <Compile Include="Infrastructure\ModuleConcreteCommandStoreHandler.cs" />
+    <Compile Include="Infrastructure\ModuleDBManager.cs" />
+    <Compile Include="Infrastructure\MultiKeyDictionary.cs" />
+    <Compile Include="Infrastructure\OSHttpRequest.cs" />
+    <Compile Include="Infrastructure\WebSocketServerHandler.cs" />
+    <Compile Include="MainServer.cs" />
+    <Compile Include="ModuleInterfaces\IBrowserOverlay.cs" />
+    <Compile Include="ModuleInterfaces\IConcreteChatCommandStorage.cs" />
+    <Compile Include="Modules\BrowserOverlayModule.cs" />
+    <Compile Include="Modules\CommandProcessorLoadTesterModule.cs" />
+    <Compile Include="Modules\ConcreteInformationCommandModule.cs" />
+    <Compile Include="Modules\ReadChatModule.cs" />
+    <Compile Include="Modules\OBSIntegrationModule.cs" />
+    <Compile Include="Modules\SentimentIconModule.cs" />
+    <Compile Include="Modules\TestModule.cs" />
+    <Compile Include="Modules\WebSocketRepeatModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RTChatMessage.cs" />
+    <Compile Include="RTWhisperMessage.cs" />
+    <Compile Include="TwitchChannel.cs" />
+    <Compile Include="TwitchMessage.cs" />
+    <Compile Include="TwitchUser.cs" />
+    <Compile Include="Utility\JaroWinklerDistance.cs" />
+    <Compile Include="Utility\Utilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="botconfig.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RebootTechBotLib.Data\RebootTechBotLib.Data.csproj">
+      <Project>{cb9d2d57-4b5a-42ff-8ffe-52f10629d3e0}</Project>
+      <Name>RebootTechBotLib.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RebootTechBotLib.SharedTypes\RebootTechBotLib.SharedTypes.csproj">
+      <Project>{72caa076-b582-4ebc-9941-c2f40526a09c}</Project>
+      <Name>RebootTechBotLib.SharedTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwitchLib.Api\TwitchLib.Api.Core.Enums\TwitchLib.Api.Core.Enums.csproj">
+      <Project>{98daee67-09a5-49ed-b252-630d382601d6}</Project>
+      <Name>TwitchLib.Api.Core.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwitchLib.Api\TwitchLib.Api.Core.Interfaces\TwitchLib.Api.Core.Interfaces.csproj">
+      <Project>{61709fed-1b63-46a4-9f35-1b3ee93b5e17}</Project>
+      <Name>TwitchLib.Api.Core.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwitchLib.Api\TwitchLib.Api.Core.Models\TwitchLib.Api.Core.Models.csproj">
+      <Project>{b89fc88b-e6d6-4b81-8b93-55325e444737}</Project>
+      <Name>TwitchLib.Api.Core.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwitchLib.Api\TwitchLib.Api.Core\TwitchLib.Api.Core.csproj">
+      <Project>{b500d3ff-59cf-4aea-821b-e462a92bbf88}</Project>
+      <Name>TwitchLib.Api.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwitchLib.Api\TwitchLib.Api.Helix.Models\TwitchLib.Api.Helix.Models.csproj">
+      <Project>{706e38a9-ea81-461b-84b1-dc3bddf86b53}</Project>
+      <Name>TwitchLib.Api.Helix.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwitchLib.Api\TwitchLib.Api.Helix\TwitchLib.Api.Helix.csproj">
+      <Project>{c3a6d8b7-62be-4462-a214-b7bb6eaf6a67}</Project>
+      <Name>TwitchLib.Api.Helix</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwitchLib.Api\TwitchLib.Api.V5.Models\TwitchLib.Api.V5.Models.csproj">
+      <Project>{a5005e75-34cb-433f-b4b0-d94329852c1e}</Project>
+      <Name>TwitchLib.Api.V5.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwitchLib.Api\TwitchLib.Api.V5\TwitchLib.Api.V5.csproj">
+      <Project>{c9c6df83-c150-4f97-ab5b-50224e48918b}</Project>
+      <Name>TwitchLib.Api.V5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwitchLib.Api\TwitchLib.Api\TwitchLib.Api.csproj">
+      <Project>{e54dbe2f-2ecc-4e59-acfd-5d59adaa9434}</Project>
+      <Name>TwitchLib.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwitchLib.Client\TwitchLib.Client.Enums\TwitchLib.Client.Enums.csproj">
+      <Project>{5bef1414-9bf1-40c2-a318-376bb8c39644}</Project>
+      <Name>TwitchLib.Client.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwitchLib.Client\TwitchLib.Client.Models\TwitchLib.Client.Models.csproj">
+      <Project>{49cd4cf8-7d7e-437e-b102-91b3460a76a0}</Project>
+      <Name>TwitchLib.Client.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwitchLib.Client\TwitchLib.Client\TwitchLib.Client.csproj">
+      <Project>{3e8b5668-4d87-412c-9d65-c000e178c053}</Project>
+      <Name>TwitchLib.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwitchLib.Communication\src\TwitchLib.Communication\TwitchLib.Communication.csproj">
+      <Project>{af313360-0dff-4475-9363-5d6edfedbdf9}</Project>
+      <Name>TwitchLib.Communication</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

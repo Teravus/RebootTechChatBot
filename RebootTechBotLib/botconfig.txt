@@ -1,0 +1,24 @@
+﻿{
+  "Credentials": {
+    "TwitchOAuth": "{You need to register an application in https://dev.twitch.tv/ This will give you two of the credentials.  After that, you must obtain an OAuth Token from https://twitchtokengenerator.com/}",
+    "TwitchClientID": "{The Client ID of the App in the developers.Twitch portal}",
+	"ClientSecret": "The Client Secret that you got when registering this application in developers.Twitch",
+	"TwitchRefreshToken": "{Your Refresh Token, if Applicable}"
+  },
+  "General": {
+    "Channel": "reboottech",
+    "BotName": "RebootTechBot",
+    "CommandIdentifier": "!",
+    "BotUserID": "RebootTechBot"
+  },
+  "HttpServer": {
+    "Port": 8080,
+	"listenip": "0.0.0.0",
+	"BacklogQueue": 15,
+	"DocumentRoot" : "C:\\Users\\dcolive\\Desktop\\Debug_V0.0\\inetpub"
+  }, 
+  "OBSWebSocket": {
+	"WebSocketURL": "ws://192.168.1.106:4444",
+	"WebSocketPassword": "{YourWebSocketPassword Configured in OBS}"
+  }
+}
