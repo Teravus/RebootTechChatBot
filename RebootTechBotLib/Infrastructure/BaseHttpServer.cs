@@ -150,8 +150,12 @@ namespace RebootTechBotLib.Infrastructure
         {
             if (HTTPRunning)
                 return;
+            int m_port_original = 0;
+            int m_optional_port = 0;
             try
             {
+                m_port_original = (int)m_port;
+                m_optional_port = m_port_original + 1;
                 m_HttpListener = CoolHTTPListener.Create(IPAddress.Any, (int)m_port);
                 m_HttpListener.ExceptionThrown += httpServerException;
                 m_HttpListener.RequestReceived += OnRequest;
@@ -163,7 +167,23 @@ namespace RebootTechBotLib.Infrastructure
             }
             catch (Exception e)
             {
-                m_Output.LogMessage("error", "[HTTPD]: Failed to start HTTPD with " + e.Message + Environment.NewLine);
+                m_Output.LogMessage("error", "[HTTPD]: Failed to start HTTPD with " + e.Message + ".  Trying alternate port." + Environment.NewLine);
+                try
+                {
+
+                    m_HttpListener = CoolHTTPListener.Create(IPAddress.Any, (int)m_optional_port);
+                    m_HttpListener.ExceptionThrown += httpServerException;
+                    m_HttpListener.RequestReceived += OnRequest;
+                    m_HttpListener.Start(m_BotConfig.httpserver.BacklogQueue);
+                    HTTPRunning = true;
+
+
+
+                }
+                catch (Exception f)
+                {
+                    m_Output.LogMessage("error", "[HTTPD]: Failed to start HTTPD with " + f.Message + Environment.NewLine);
+                }
             }
         }
 

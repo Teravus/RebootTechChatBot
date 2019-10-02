@@ -1,0 +1,16 @@
+.sentimenticon-image {
+    width: 120px;
+    height: 110px;
+	position: fixed;
+    bottom: 0;
+    right: 0;
+}
+.sentiment-medium {
+	background-image: url('/img/sentimenticon/medium.png');
+}
+.sentiment-high {
+	background-image: url('/img/sentimenticon/high.png');
+}
+.sentiment-low {
+	background-image: url('/img/sentimenticon/low.png');
+}

@@ -747,6 +747,7 @@ namespace RebootTechBotLib
                 SharedUser dbuser = userDB.GetUserByUserName(UserName);
                 if (dbuser == null)
                 {
+                    // Get User from Twitch API
                     TwitchUser tu = this.GetUserByUserNames(new List<string>() { UserName }).FirstOrDefault();
                     if (tu != null)
                     {
@@ -975,7 +976,7 @@ namespace RebootTechBotLib
             ChatMessage d = OnChatMessage;
             if (d != null)
                 d(e.ChatMessage.Channel, message);
-            //
+            // Run the command on the command processor
             CommandServer.BubbleCommandRun(e.ChatMessage.Channel, Utility.Utilities.GetCommandPermissionFromTwitchLibUserType(e.ChatMessage.UserType, (int)user.ChatTime), message.Message);
             TwitchChannel twitchChannel = null;
             lock (connectedChannels)
@@ -993,6 +994,8 @@ namespace RebootTechBotLib
 
             ThreadPool.QueueUserWorkItem(new WaitCallback(SaveChatMessage), new ChatSaveObject(chatDB) { message = new RTChatMessage(e.ChatMessage) });
         }
+
+        // TODO: Extract to separate file.
         class ChatSaveObject
         {
             public ChatSaveObject(Data.BotChatData pData)
