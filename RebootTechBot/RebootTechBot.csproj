@@ -210,6 +210,10 @@
       <Project>{d175359f-c5fb-4455-b85f-12b9defbb682}</Project>
       <Name>RebootTechBotLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TwitchLib.Communication\src\TwitchLib.Communication\TwitchLib.Communication.csproj">
+      <Project>{63d5d3f3-0dba-46b3-b3ea-40206fa4e2d6}</Project>
+      <Name>TwitchLib.Communication</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

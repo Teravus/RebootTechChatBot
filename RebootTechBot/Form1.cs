@@ -175,7 +175,7 @@ namespace RebootTechBot
             
         }
       
-
+        // TODO: Rename Button
         private void button1_Click(object sender, EventArgs e)
         {
             rbtechbot.LogMessage += LogMessage;
@@ -428,8 +428,8 @@ namespace RebootTechBot
         }
         private void EnableApplyButtons()
         {
-            if (ddModerationPreset.SelectedValue.ToString() != "Custom")
-                ddModerationPreset.SelectedValue = "Custom";
+            if (ddModerationPreset.SelectedItem.ToString() != "Custom")
+                ddModerationPreset.SelectedItem = "Custom";
             btnApplyModerationChanges.Enabled = true;
             btnCancelModerationChanges.Enabled = true;
         }

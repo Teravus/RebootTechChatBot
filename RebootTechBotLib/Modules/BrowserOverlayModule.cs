@@ -252,6 +252,7 @@ namespace RebootTechBotLib.Modules
 
         public void AddCSSModule(string module, string css)
         {
+            // TODO: Fix.  Disconnecting and Reconnecting throws an exception because this isn't cleared.
             m_ModuleCSS.Add(module, css);
             ComposeCssAdditionMessage(module, css);
         }

@@ -57,7 +57,7 @@ namespace RebootTechBotLib.Modules
 
         public void Initialize(BotConfig config)
         {
-            m_output.LogMessage("info", string.Format("[TESTMODULE]: I was Initialized! My name is {0}", config.general.BotName));
+            m_output.LogMessage("info", string.Format("[READCHATMODULE]: I was Initialized! My name is {0}", config.general.BotName));
             SetUpSpeechSynth();
         }
 

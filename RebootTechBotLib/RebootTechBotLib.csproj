@@ -205,6 +205,66 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Desktop\Research\TwitchLib\TwitchLib.Api\TwitchLib.Api.Core.Enums\TwitchLib.Api.Core.Enums.csproj">
+      <Project>{af267e90-b2ba-4adb-9156-263ea2cefa8e}</Project>
+      <Name>TwitchLib.Api.Core.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Desktop\Research\TwitchLib\TwitchLib.Api\TwitchLib.Api.Core.Interfaces\TwitchLib.Api.Core.Interfaces.csproj">
+      <Project>{69a88436-d70b-41e0-a4a3-788dab9f006e}</Project>
+      <Name>TwitchLib.Api.Core.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Desktop\Research\TwitchLib\TwitchLib.Api\TwitchLib.Api.Core.Models\TwitchLib.Api.Core.Models.csproj">
+      <Project>{6072737a-e60a-4a78-a432-38d777261333}</Project>
+      <Name>TwitchLib.Api.Core.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Desktop\Research\TwitchLib\TwitchLib.Api\TwitchLib.Api.Core\TwitchLib.Api.Core.csproj">
+      <Project>{6ad45667-484e-43a8-8811-107fd316bfc8}</Project>
+      <Name>TwitchLib.Api.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Desktop\Research\TwitchLib\TwitchLib.Api\TwitchLib.Api.Helix.Models\TwitchLib.Api.Helix.Models.csproj">
+      <Project>{ac20d1db-7ae6-4d57-b4e3-d0dffc647afd}</Project>
+      <Name>TwitchLib.Api.Helix.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Desktop\Research\TwitchLib\TwitchLib.Api\TwitchLib.Api.Helix\TwitchLib.Api.Helix.csproj">
+      <Project>{94dee345-73d5-457a-a22a-5419ab025fac}</Project>
+      <Name>TwitchLib.Api.Helix</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Desktop\Research\TwitchLib\TwitchLib.Api\TwitchLib.Api.V5.Models\TwitchLib.Api.V5.Models.csproj">
+      <Project>{2ec0e005-ce82-42c6-abc7-0c5b3d94747c}</Project>
+      <Name>TwitchLib.Api.V5.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Desktop\Research\TwitchLib\TwitchLib.Api\TwitchLib.Api.V5\TwitchLib.Api.V5.csproj">
+      <Project>{764950a9-52e7-4f07-91bc-90d0b245a0ea}</Project>
+      <Name>TwitchLib.Api.V5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Desktop\Research\TwitchLib\TwitchLib.Api\TwitchLib.Api\TwitchLib.Api.csproj">
+      <Project>{085A8131-533A-45B6-A39A-770028233EFC}</Project>
+      <Name>TwitchLib.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Desktop\Research\TwitchLib\TwitchLib.Client\TwitchLib.Client.Enums\TwitchLib.Client.Enums.csproj">
+      <Project>{fbb7539b-db86-4e1e-85ca-758769facebc}</Project>
+      <Name>TwitchLib.Client.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Desktop\Research\TwitchLib\TwitchLib.Client\TwitchLib.Client.Models\TwitchLib.Client.Models.csproj">
+      <Project>{588c390c-351d-4c23-a314-e5f54e189cd9}</Project>
+      <Name>TwitchLib.Client.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Desktop\Research\TwitchLib\TwitchLib.Client\TwitchLib.Client\TwitchLib.Client.csproj">
+      <Project>{a5c18b0a-273c-4c34-9286-b772abf59904}</Project>
+      <Name>TwitchLib.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Desktop\Research\TwitchLib\TwitchLib.Client\TwitchLib.Communication\src\TwitchLib.Communication\TwitchLib.Communication.csproj">
+      <Project>{63d5d3f3-0dba-46b3-b3ea-40206fa4e2d6}</Project>
+      <Name>TwitchLib.Communication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Desktop\Research\TwitchLib\TwitchLib.PubSub\TwitchLib.PubSub\TwitchLib.PubSub.csproj">
+      <Project>{b3be275b-633a-444f-840b-fd37566007e5}</Project>
+      <Name>TwitchLib.PubSub</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Desktop\Research\TwitchLib\TwitchLib.WebSocket\TwitchLib.WebSocket.csproj">
+      <Project>{3e864fc8-7bf3-41f6-aad4-ce6d891ebfa1}</Project>
+      <Name>TwitchLib.WebSocket</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RebootTechBotLib.Data\RebootTechBotLib.Data.csproj">
       <Project>{cb9d2d57-4b5a-42ff-8ffe-52f10629d3e0}</Project>
       <Name>RebootTechBotLib.Data</Name>
@@ -212,58 +272,6 @@
     <ProjectReference Include="..\RebootTechBotLib.SharedTypes\RebootTechBotLib.SharedTypes.csproj">
       <Project>{72caa076-b582-4ebc-9941-c2f40526a09c}</Project>
       <Name>RebootTechBotLib.SharedTypes</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TwitchLib.Api\TwitchLib.Api.Core.Enums\TwitchLib.Api.Core.Enums.csproj">
-      <Project>{98daee67-09a5-49ed-b252-630d382601d6}</Project>
-      <Name>TwitchLib.Api.Core.Enums</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TwitchLib.Api\TwitchLib.Api.Core.Interfaces\TwitchLib.Api.Core.Interfaces.csproj">
-      <Project>{61709fed-1b63-46a4-9f35-1b3ee93b5e17}</Project>
-      <Name>TwitchLib.Api.Core.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TwitchLib.Api\TwitchLib.Api.Core.Models\TwitchLib.Api.Core.Models.csproj">
-      <Project>{b89fc88b-e6d6-4b81-8b93-55325e444737}</Project>
-      <Name>TwitchLib.Api.Core.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TwitchLib.Api\TwitchLib.Api.Core\TwitchLib.Api.Core.csproj">
-      <Project>{b500d3ff-59cf-4aea-821b-e462a92bbf88}</Project>
-      <Name>TwitchLib.Api.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TwitchLib.Api\TwitchLib.Api.Helix.Models\TwitchLib.Api.Helix.Models.csproj">
-      <Project>{706e38a9-ea81-461b-84b1-dc3bddf86b53}</Project>
-      <Name>TwitchLib.Api.Helix.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TwitchLib.Api\TwitchLib.Api.Helix\TwitchLib.Api.Helix.csproj">
-      <Project>{c3a6d8b7-62be-4462-a214-b7bb6eaf6a67}</Project>
-      <Name>TwitchLib.Api.Helix</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TwitchLib.Api\TwitchLib.Api.V5.Models\TwitchLib.Api.V5.Models.csproj">
-      <Project>{a5005e75-34cb-433f-b4b0-d94329852c1e}</Project>
-      <Name>TwitchLib.Api.V5.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TwitchLib.Api\TwitchLib.Api.V5\TwitchLib.Api.V5.csproj">
-      <Project>{c9c6df83-c150-4f97-ab5b-50224e48918b}</Project>
-      <Name>TwitchLib.Api.V5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TwitchLib.Api\TwitchLib.Api\TwitchLib.Api.csproj">
-      <Project>{e54dbe2f-2ecc-4e59-acfd-5d59adaa9434}</Project>
-      <Name>TwitchLib.Api</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TwitchLib.Client\TwitchLib.Client.Enums\TwitchLib.Client.Enums.csproj">
-      <Project>{5bef1414-9bf1-40c2-a318-376bb8c39644}</Project>
-      <Name>TwitchLib.Client.Enums</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TwitchLib.Client\TwitchLib.Client.Models\TwitchLib.Client.Models.csproj">
-      <Project>{49cd4cf8-7d7e-437e-b102-91b3460a76a0}</Project>
-      <Name>TwitchLib.Client.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TwitchLib.Client\TwitchLib.Client\TwitchLib.Client.csproj">
-      <Project>{3e8b5668-4d87-412c-9d65-c000e178c053}</Project>
-      <Name>TwitchLib.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TwitchLib.Communication\src\TwitchLib.Communication\TwitchLib.Communication.csproj">
-      <Project>{af313360-0dff-4475-9363-5d6edfedbdf9}</Project>
-      <Name>TwitchLib.Communication</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

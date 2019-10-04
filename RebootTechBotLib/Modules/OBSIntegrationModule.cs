@@ -159,9 +159,9 @@ namespace RebootTechBotLib.Modules
             m_obs.RecordingStateChanged += onRecordingStateChange;
 
             m_obs.StreamStatus += onStreamData;
-            CommandServer.AddCommand(string.Empty, CommandPermissions.Unknown, "OBSIntegrationModule", true, "!uptime", "!uptime", "Display how long the stream has been online.", PrintUptime);
-            CommandServer.AddCommand(string.Empty, CommandPermissions.Unknown , "OBSIntegrationModule", true, "!scenes", "!scenes", "Lists all scenes in the current scene collection.", PrintOBSScenes);
-            CommandServer.AddCommand(string.Empty, CommandPermissions.Unknown , "OBSIntegrationModule", true, "!switchscene", "!switchscene [sceneindex]", "Switches scene to scene identified by this scene index from the !scenes command", SwitchOBSScene);
+            CommandServer.AddCommand(string.Empty, CommandPermissions.Viewer , "OBSIntegrationModule", true, "!uptime", "!uptime", "Display how long the stream has been online.", PrintUptime);
+            CommandServer.AddCommand(string.Empty, CommandPermissions.Mod | CommandPermissions.BroadCaster | CommandPermissions.VIP | CommandPermissions.Bits100000p, "OBSIntegrationModule", true, "!scenes", "!scenes", "Lists all scenes in the current scene collection.", PrintOBSScenes);
+            CommandServer.AddCommand(string.Empty, CommandPermissions.Mod | CommandPermissions.BroadCaster | CommandPermissions.VIP | CommandPermissions.Bits100000p, "OBSIntegrationModule", true, "!switchscene", "!switchscene [sceneindex]", "Switches scene to scene identified by this scene index from the !scenes command", SwitchOBSScene);
 
             ConnectOBS(m_obs);
         }

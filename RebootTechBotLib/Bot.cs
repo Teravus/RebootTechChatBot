@@ -564,6 +564,8 @@ namespace RebootTechBotLib
             ShutdownSave();
             UnSubscribeEvents();
             m_HttpServer.Stop();
+            if (saveTimer == null)
+                return;
             saveTimer.Change(
                         System.Threading.Timeout.Infinite,
                         System.Threading.Timeout.Infinite);
