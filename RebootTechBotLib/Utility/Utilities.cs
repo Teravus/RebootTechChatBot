@@ -1,7 +1,9 @@
 ﻿using RebootTechBotLib.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using TwitchLib.Client.Enums;
@@ -333,5 +335,212 @@ namespace RebootTechBotLib.Utility
 
             return message.Trim();
         }
+
+        /// <summary>
+        /// Http Utility method to handle the generic cases for URL callouts to the API Endpoint
+        /// </summary>
+        /// <param name="requestParams">Information about our Request</param>
+        /// <returns>The requestParams object with the Response values filled</returns>
+        public static BasicAuthenticatedHttpRequestResponseParams AuthenticatedURLRequest(BasicAuthenticatedHttpRequestResponseParams requestParams)
+        {
+            string reqdata = string.Empty;
+            string postdata = string.Empty;
+
+            string url = requestParams.URL;
+
+            // Only handling GET and POST currently
+            switch (requestParams.HTTP_Method)
+            {
+                case "GET":  // Append the URLEncoded data to the URL
+                    if (requestParams.Data.Length > 0)
+                        url += "?" + requestParams.Data;
+                    break;
+                case "POST":  // fill our post values for posting
+                    postdata = requestParams.Data;
+                    break;
+            }
+
+
+            CookieContainer myContainer = new CookieContainer();
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            req.Method = requestParams.HTTP_Method;
+            req.ContentType = requestParams.ContentType;
+            // Basic Authentication Login..... 
+            if (!string.IsNullOrEmpty(requestParams.UserName) && !string.IsNullOrEmpty(requestParams.Password))
+            {
+                string encoded = System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(requestParams.UserName + ":" + requestParams.Password));
+                string responsestring = string.Empty;
+                req.Headers.Add("Authorization", "Basic " + encoded);
+                req.Credentials = new NetworkCredential(requestParams.UserName, requestParams.Password);
+                req.PreAuthenticate = true;
+            }
+            else if (!string.IsNullOrEmpty(requestParams.Bearer))
+            {
+                string responsestring = string.Empty;
+                req.Headers.Add("Authorization", "Bearer " + requestParams.Bearer);
+                req.PreAuthenticate = false;
+            }
+            req.CookieContainer = myContainer;
+
+
+            HttpWebResponse resp = null;
+            try
+            {
+                if (postdata.Length > 0)  // Prep our post data
+                {
+                    byte[] postbyte = System.Text.ASCIIEncoding.ASCII.GetBytes(postdata);
+                    req.ContentLength = postbyte.Length;
+                    using (BinaryWriter PostStream = new BinaryWriter(req.GetRequestStream()))
+                    {
+                        PostStream.Write(postbyte);
+                        PostStream.Close();
+                    }
+                }
+
+                using (resp = (HttpWebResponse)req.GetResponse())
+                {
+                    using (StreamReader reader = new StreamReader(resp.GetResponseStream()))
+                    {
+                        requestParams.ResponseCode = (int)resp.StatusCode;
+                        requestParams.ResponseString = reader.ReadToEnd();
+
+                        try
+                        {
+                            // If the server says that there is JSON here, parse it
+                            if (resp.ContentType.ToLowerInvariant() == "application/json")
+                            {
+
+                                requestParams.ParsedResponseDictionary = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(requestParams.ResponseString);
+                            }
+                        }
+                        catch
+                        {
+
+                        }
+                        //aresult = true;
+                    }
+                    requestParams.ResponseHeaders = new System.Collections.Specialized.NameValueCollection(resp.Headers.Count);
+                    foreach (var key in resp.Headers.AllKeys)
+                    {
+                        requestParams.ResponseHeaders.Add(key, resp.Headers[key]);
+                    }
+                }
+            }
+            catch (WebException we)
+            {
+                try
+                {
+                    if (resp != null)
+                        requestParams.ResponseCode = (int)resp.StatusCode;
+                }
+                catch
+                {
+                    requestParams.ResponseCode = (int)HttpStatusCode.RequestTimeout;
+
+                }
+                if (requestParams.ResponseCode == 0)
+                    requestParams.ResponseCode = (int)HttpStatusCode.RequestTimeout;
+                string errResponse = we.ToString();
+                // Try to get as much of the response message as we can.  This does not always succeed.
+                try
+                {
+                    foreach (string s in we.Response.Headers.AllKeys)
+                    {
+                        errResponse += s + ": " + we.Response.Headers[s] + "\r\n";
+                    }
+                    using (var errResponseStrem = new StreamReader(we.Response.GetResponseStream()))
+                    //ex.Response.GetResponseStream().Seek(0, SeekOrigin.Begin);
+                    {
+                        errResponseStrem.BaseStream.Seek(0, SeekOrigin.Begin);
+                        errResponse += "\r\n" + errResponseStrem.ReadToEnd();
+                        //errResponseStrem.BaseStream.Seek(0, SeekOrigin.Begin);
+                    }
+                }
+                catch
+                { }
+
+                requestParams.ResponseString = errResponse;
+            }
+            catch (Exception e)
+            {
+                try
+                {
+                    if (resp != null)
+                        requestParams.ResponseCode = (int)resp.StatusCode;
+                }
+                catch
+                {
+                    requestParams.ResponseCode = 500;
+                }
+                if (requestParams.ResponseCode == 0)
+                    requestParams.ResponseCode = 500;
+                requestParams.ResponseString = e.ToString();
+            }
+
+
+            return requestParams;
+        }
+
     }
+    /// <summary>
+    /// Helper class to interface with HTTP Ultility Method.
+    /// </summary>
+    public class BasicAuthenticatedHttpRequestResponseParams
+    {
+        public BasicAuthenticatedHttpRequestResponseParams()
+        {
+            ParsedResponseDictionary = new Dictionary<string, string>();
+        }
+        /// <summary>
+        /// URL to make the HTTP Request to
+        /// </summary>
+        public string URL { get; set; }
+
+        /// <summary>
+        /// BASIC Authentication UserName
+        /// </summary>
+        public string UserName { get; set; }
+
+        /// <summary>
+        /// Basic Authentication Password
+        /// </summary>
+        public string Password { get; set; }
+
+        /// <summary>
+        /// Bearer Access Token
+        /// </summary>
+        public string Bearer { get; set; }
+
+        /// <summary>
+        /// HTTP Method string
+        /// </summary>
+        public string HTTP_Method { get; set; }
+
+        /// <summary>
+        /// Post Content Type.  For when there is post data
+        /// </summary>
+        public string ContentType { get; set; }
+
+        /// <summary>
+        /// Data to Post or to append to the URL
+        /// </summary>
+        public string Data { get; set; }
+
+        /// <summary>
+        /// The response body content of the response to this request
+        /// </summary>
+        public string ResponseString { get; set; }
+
+        /// <summary>
+        /// If the response is JSON and has a proper ContentType, this dictionary will be populated
+        /// </summary>
+        public Dictionary<string, string> ParsedResponseDictionary { get; set; }
+        public System.Collections.Specialized.NameValueCollection ResponseHeaders { get; set; }
+        /// <summary>
+        /// int http response code for this request's response
+        /// </summary>
+        public int ResponseCode { get; set; }
+
+    }
+
 }

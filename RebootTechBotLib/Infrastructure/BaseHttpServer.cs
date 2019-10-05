@@ -146,6 +146,10 @@ namespace RebootTechBotLib.Infrastructure
             StartHTTP();
 
         }
+        public bool IsStarted
+        {
+            get { return HTTPRunning; }
+        }
         private void StartHTTP()
         {
             if (HTTPRunning)
@@ -738,8 +742,20 @@ namespace RebootTechBotLib.Infrastructure
         internal void DoHTTPGruntWork(Hashtable responsedata, OSHttpResponse response)
         {
             int responsecode = (int)responsedata["int_response_code"];
-            string responseString = (string)responsedata["str_response_string"];
-            string contentType = (string)responsedata["content_type"];
+            string responseString = string.Empty;
+
+            if (responsedata.ContainsKey("str_response_string"))
+                responseString = (string)responsedata["str_response_string"];
+
+            string contentType = string.Empty;
+
+            if (responsedata.ContainsKey("content_type"))
+                contentType = (string)responsedata["content_type"];
+
+            string RedirectLocationHeader = string.Empty;
+            if (responsedata.ContainsKey("redirect_location"))
+                RedirectLocationHeader = (string)responsedata["redirect_location"];
+
             if (responsedata.ContainsKey("error_status_text"))
             {
                 response.StatusDescription = (string)responsedata["error_status_text"];
@@ -764,8 +780,18 @@ namespace RebootTechBotLib.Infrastructure
                 contentType = "text/html";
             }
             response.StatusCode = responsecode;
+            
+            switch (responsecode)
+            {
+                case 302:
+                    response.AddHeader("Location", RedirectLocationHeader);
+                    break;
+                default:
+                    response.AddHeader("Content-Type", contentType);
+                    break;
+            }
 
-            response.AddHeader("Content-Type", contentType);
+            
 
             byte[] buffer;
             if (!contentType.Contains("image"))

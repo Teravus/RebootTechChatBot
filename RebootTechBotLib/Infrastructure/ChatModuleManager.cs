@@ -49,6 +49,7 @@ namespace RebootTechBotLib.Infrastructure
                     Config.BotConfig neuteredConfig = new Config.BotConfig();
                     neuteredConfig.general = m_Config.general;
                     neuteredConfig.httpserver = m_Config.httpserver;
+                    neuteredConfig.obswebsocket = m_Config.obswebsocket;
                     obj.Initialize(neuteredConfig);
 
                 }

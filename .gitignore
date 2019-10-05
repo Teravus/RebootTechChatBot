@@ -328,3 +328,8 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+/TwitchLib
+/TwitchLib.Api
+/TwitchLib.Client
+/TwitchLib.PubSub/TwitchLib.PubSub
+/TwitchLib.WebSocket

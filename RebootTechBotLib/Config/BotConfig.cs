@@ -37,6 +37,7 @@ namespace RebootTechBotLib.Config
         }
         public class OBSWebSocket
         {
+            public bool Enabled { get; set; }
             public string WebSocketURL { get; set; }
             public string WebSocketPassword { get; set; }
         }

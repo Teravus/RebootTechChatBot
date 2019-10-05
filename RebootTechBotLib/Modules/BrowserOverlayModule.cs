@@ -245,15 +245,31 @@ namespace RebootTechBotLib.Modules
         public void AddJSModule(string module, string js)
         {
             // this is supposed to add additional javascript calls from the overlay.
+            if (m_ModuleJS.ContainsKey(module))
+            {
+                m_ModuleJS[module] = js;
+            } 
+            else
+            {
+                m_ModuleJS.Add(module, js);
+            }
+            
 
-            m_ModuleJS.Add(module, js);
             ComposeJSAdditionMessage(module, js);
         }
 
         public void AddCSSModule(string module, string css)
         {
             // TODO: Fix.  Disconnecting and Reconnecting throws an exception because this isn't cleared.
-            m_ModuleCSS.Add(module, css);
+            if (m_ModuleCSS.ContainsKey(module))
+            {
+                m_ModuleCSS[module] = css;
+            }
+            else
+            {
+                m_ModuleCSS.Add(module, css);
+            }
+            
             ComposeCssAdditionMessage(module, css);
         }
 

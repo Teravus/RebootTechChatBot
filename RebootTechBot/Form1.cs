@@ -22,6 +22,8 @@ namespace RebootTechBot
         private int chattextline = 0;
         private int logtextline = 0;
 
+        private OAuthSignInForm OauthTokenWindow = null;
+
         private ModerationModel lastModerationModel = null;
 
         Bot rbtechbot = new Bot();
@@ -237,6 +239,11 @@ namespace RebootTechBot
         private void btnCensorTimeout_Click(object sender, EventArgs e)
         {
             var selecteditems = lstChatUsers.SelectedItems;
+            if (selecteditems.Count == 0)
+            {
+                MessageBox.Show("You must select at least one user before clicking the timeout button.");
+                return;
+            }
             var selecteditem = selecteditems[0];
             string TimeoutUsername = selecteditem.Text;
             rbtechbot.Timeout(null,TimeoutUsername, 1);
@@ -245,6 +252,12 @@ namespace RebootTechBot
         private void btnTimeout_Click(object sender, EventArgs e)
         {
             var selecteditems = lstChatUsers.SelectedItems;
+            
+            if (selecteditems.Count == 0)
+            {
+                MessageBox.Show("You must select at least one user before clicking the timeout button.");
+                return;
+            }
             var selecteditem = selecteditems[0];
             string TimeoutUsername = selecteditem.Text;
             rbtechbot.Timeout(null, TimeoutUsername, 86400);
@@ -253,6 +266,11 @@ namespace RebootTechBot
         private void btnBan_Click(object sender, EventArgs e)
         {
             var selecteditems = lstChatUsers.SelectedItems;
+            if (selecteditems.Count == 0)
+            {
+                MessageBox.Show("You must select at least one user before clicking the ban button.");
+                return;
+            }
             var selecteditem = selecteditems[0];
             string TimeoutUsername = selecteditem.Text;
             rbtechbot.Ban(null, TimeoutUsername, "Banned By Streamer");
@@ -438,6 +456,30 @@ namespace RebootTechBot
             btnApplyModerationChanges.Enabled = false;
             btnCancelModerationChanges.Enabled = false;
         }
-       
+
+        private void btnGetAPITokens_Click(object sender, EventArgs e)
+        {
+            if (OauthTokenWindow != null)
+            {
+                if (OauthTokenWindow.IsDisposed)
+                {
+                    OauthTokenWindow = new OAuthSignInForm();
+                    OauthTokenWindow.bot = this.rbtechbot;
+                    var config = rbtechbot.StartHTTPServerForOAuth();
+                    OauthTokenWindow.botConfig = config;
+                    OauthTokenWindow.Show();
+                }
+                else
+                    OauthTokenWindow.Show();
+            }
+            else
+            {
+                OauthTokenWindow = new OAuthSignInForm();
+                OauthTokenWindow.bot = this.rbtechbot;
+                var config = rbtechbot.StartHTTPServerForOAuth();
+                OauthTokenWindow.botConfig = config;
+                OauthTokenWindow.Show();
+            }
+        }
     }
 }

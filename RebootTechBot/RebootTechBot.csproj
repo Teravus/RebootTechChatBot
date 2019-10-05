@@ -172,11 +172,21 @@
     </Compile>
     <Compile Include="models\ModerationBannedWord.cs" />
     <Compile Include="models\ModerationModel.cs" />
+    <Compile Include="OAuthRequestHandler.cs" />
+    <Compile Include="OAuthSignInForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OAuthSignInForm.Designer.cs">
+      <DependentUpon>OAuthSignInForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TwitchMessage.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OAuthSignInForm.resx">
+      <DependentUpon>OAuthSignInForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -223,6 +233,12 @@
     <Content Include="inetpub\css\styles.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="inetpub\css\twitchdev.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="inetpub\img\oauthScreenShot.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="inetpub\js\anime.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -240,6 +256,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="inetpub\js\overlaycontrol.js" />
+    <Content Include="inetpub\oauthinfo.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.110.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.110.0\build\net46\System.Data.SQLite.Core.targets')" />

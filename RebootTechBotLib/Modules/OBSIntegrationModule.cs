@@ -144,26 +144,29 @@ namespace RebootTechBotLib.Modules
         public void Initialize(BotConfig config)
         {
             m_config = config;
-            m_obs = new OBSWebsocket();
+            if (m_config.obswebsocket.Enabled)
+            {
+                m_obs = new OBSWebsocket();
 
-            m_obs.Connected += onConnect;
-            m_obs.Disconnected += onDisconnect;
+                m_obs.Connected += onConnect;
+                m_obs.Disconnected += onDisconnect;
 
-            m_obs.SceneChanged += onSceneChange;
-            m_obs.SceneCollectionChanged += onSceneColChange;
-            m_obs.ProfileChanged += onProfileChange;
-            m_obs.TransitionChanged += onTransitionChange;
-            m_obs.TransitionDurationChanged += onTransitionDurationChange;
+                m_obs.SceneChanged += onSceneChange;
+                m_obs.SceneCollectionChanged += onSceneColChange;
+                m_obs.ProfileChanged += onProfileChange;
+                m_obs.TransitionChanged += onTransitionChange;
+                m_obs.TransitionDurationChanged += onTransitionDurationChange;
 
-            m_obs.StreamingStateChanged += onStreamingStateChange;
-            m_obs.RecordingStateChanged += onRecordingStateChange;
+                m_obs.StreamingStateChanged += onStreamingStateChange;
+                m_obs.RecordingStateChanged += onRecordingStateChange;
 
-            m_obs.StreamStatus += onStreamData;
-            CommandServer.AddCommand(string.Empty, CommandPermissions.Viewer , "OBSIntegrationModule", true, "!uptime", "!uptime", "Display how long the stream has been online.", PrintUptime);
-            CommandServer.AddCommand(string.Empty, CommandPermissions.Mod | CommandPermissions.BroadCaster | CommandPermissions.VIP | CommandPermissions.Bits100000p, "OBSIntegrationModule", true, "!scenes", "!scenes", "Lists all scenes in the current scene collection.", PrintOBSScenes);
-            CommandServer.AddCommand(string.Empty, CommandPermissions.Mod | CommandPermissions.BroadCaster | CommandPermissions.VIP | CommandPermissions.Bits100000p, "OBSIntegrationModule", true, "!switchscene", "!switchscene [sceneindex]", "Switches scene to scene identified by this scene index from the !scenes command", SwitchOBSScene);
+                m_obs.StreamStatus += onStreamData;
+                CommandServer.AddCommand(string.Empty, CommandPermissions.Viewer, "OBSIntegrationModule", true, "!uptime", "!uptime", "Display how long the stream has been online.", PrintUptime);
+                CommandServer.AddCommand(string.Empty, CommandPermissions.Mod | CommandPermissions.BroadCaster | CommandPermissions.VIP | CommandPermissions.Bits100000p, "OBSIntegrationModule", true, "!scenes", "!scenes", "Lists all scenes in the current scene collection.", PrintOBSScenes);
+                CommandServer.AddCommand(string.Empty, CommandPermissions.Mod | CommandPermissions.BroadCaster | CommandPermissions.VIP | CommandPermissions.Bits100000p, "OBSIntegrationModule", true, "!switchscene", "!switchscene [sceneindex]", "Switches scene to scene identified by this scene index from the !scenes command", SwitchOBSScene);
 
-            ConnectOBS(m_obs);
+                ConnectOBS(m_obs);
+            }
         }
 
         private void SwitchOBSScene(string module, string[] cmd)
@@ -240,7 +243,8 @@ namespace RebootTechBotLib.Modules
         }
         public void Shutdown()
         {
-            DisconnectOBS();
+            if (m_config.obswebsocket.Enabled)
+                DisconnectOBS();
         }
 
 

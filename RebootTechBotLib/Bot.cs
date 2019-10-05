@@ -74,7 +74,8 @@ namespace RebootTechBotLib
         
         // Our bot config
         private Config.BotConfig botConfig = null;
-        
+        private string m_ConfigFilePath = string.Empty;
+
 
         public Bot()
         {
@@ -84,9 +85,11 @@ namespace RebootTechBotLib
             m_Output.SetLogCallback(LogCallback);
 
             // load our config
-            botConfig = LoadConfig(System.IO.Path.Combine(
+            m_ConfigFilePath = System.IO.Path.Combine(
                 AppContext.BaseDirectory,
-                "botconfig.txt"));
+                "botconfig.txt");
+
+            botConfig = LoadConfig(m_ConfigFilePath);
 
             // create our module manager.  we'll start it in start modules.
             m_ChatModuleManager = new ChatModuleManager(botConfig);
@@ -140,8 +143,11 @@ namespace RebootTechBotLib
             ChannelsToMonitorFollows.Add(botConfig.general.Channel);
 
             // create our HttpServer with the information in the httpserver section of the config
-            m_HttpServer = new BaseHttpServer(botConfig);
-            MainServer.SetHttpServerInstance(m_HttpServer);
+            if (m_HttpServer == null)
+            {
+                m_HttpServer = new BaseHttpServer(botConfig);
+                MainServer.SetHttpServerInstance(m_HttpServer);
+            }
            
 
             // ---------- Twitch Stuff -----------//
@@ -153,10 +159,11 @@ namespace RebootTechBotLib
             twitchClient.Connect();
 
             // --------- End Twitch Stuff --------//
-
-            // Start our HTTP Server
-            m_HttpServer.Start();
-            
+            if (!m_HttpServer.IsStarted)
+            {
+                // Start our HTTP Server
+                m_HttpServer.Start();
+            }
             // Start the modules!
             StartModules();
 
@@ -164,6 +171,21 @@ namespace RebootTechBotLib
             //m_CommandProcessor.Commands.AddCommand("repeat", false, "!say", "!say - repeats text", "This command repeats the text following it. Remember to enclose it in quotes", RepeatChat);
             //m_CommandProcessor.Commands.AddCommand("repeat", false, "!repeattext", "!repeatext repeats text", "This command repeats the text following it. Remember to enclose it in quotes", RepeatChat);
             saveTimer = new Timer(new TimerCallback(SaveUsers), userDB, 60000, 60000);
+        }
+        public BotConfig StartHTTPServerForOAuth()
+        {
+            // create our HttpServer with the information in the httpserver section of the config
+            if (m_HttpServer == null)
+            {
+                m_HttpServer = new BaseHttpServer(botConfig);
+                MainServer.SetHttpServerInstance(m_HttpServer);
+            }
+            if (!m_HttpServer.IsStarted)
+            {
+                // Start our HTTP Server
+                m_HttpServer.Start();
+            }
+            return botConfig;
         }
         //private System.Collections.Hashtable HandleHi(System.Collections.Hashtable input)
         //{
@@ -557,20 +579,30 @@ namespace RebootTechBotLib
             return config;
         }
 
+        public void SaveConfig(BotConfig config)
+        {
+            string ConfigText = JsonConvert.SerializeObject(config);
+            System.IO.File.WriteAllText(m_ConfigFilePath, ConfigText);
+            botConfig = config;
+        }
+
         public void Stop()
         {
-            if (twitchClient.IsConnected)
-                twitchClient.Disconnect();
             ShutdownSave();
+            if (saveTimer != null)
+            {
+                saveTimer.Change(
+                            System.Threading.Timeout.Infinite,
+                            System.Threading.Timeout.Infinite);
+                saveTimer.Dispose();
+                saveTimer = null;
+            }
+            if (twitchClient == null)
+                return;
+            
             UnSubscribeEvents();
             m_HttpServer.Stop();
-            if (saveTimer == null)
-                return;
-            saveTimer.Change(
-                        System.Threading.Timeout.Infinite,
-                        System.Threading.Timeout.Infinite);
-            saveTimer.Dispose();
-            saveTimer = null;
+            
             
         }
 
