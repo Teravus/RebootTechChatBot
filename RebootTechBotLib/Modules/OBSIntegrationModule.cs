@@ -220,7 +220,7 @@ namespace RebootTechBotLib.Modules
                 try
                 {
 
-                    obsws.Connect(OBSURL, WebSOcketPW);
+                    obsws.Connect(m_config.obswebsocket.WebSocketURL, m_config.obswebsocket.WebSocketPassword);
                 }
                 catch (AuthFailureException)
                 {
@@ -253,9 +253,7 @@ namespace RebootTechBotLib.Modules
 
 
 
-
-        private string OBSURL = "ws://192.168.1.105:4444";
-        private string WebSOcketPW = "F1r3st0rm";
+        
     }
 }
 
